@@ -2,16 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>2dc5ed60-42e2-41e7-bb77-a10ba810ae43</ProjectGuid>
-    <ProjectHome>
-    </ProjectHome>
+    <ProjectGuid>d37b5c5e-a92f-4b66-ac3b-b5fb32236e8b</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
     <StartupFile>Car.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>Car</Name>
-    <RootNamespace>RC car project</RootNamespace>
+    <RootNamespace>Car</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,6 +22,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Car.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Interconnector\Interconnector.pyproj">
+      <Name>Interconnector</Name>
+      <Project>{0e4347d7-8616-48dc-9793-e3275cffa2c2}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
