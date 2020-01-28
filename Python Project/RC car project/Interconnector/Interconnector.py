@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import json
 
-class RCPCMsg:
+class CarStatusMsg:
 	def __init__(self, name, status, battery):
 		self.name = name
 		self.status = status
@@ -22,4 +22,9 @@ class RCPCMsg:
 	@staticmethod
 	def from_json(json_str):
 		x = json.loads(json_str)
-		return RCPCMsg(x['name'], x['status'], x['battery'])
+		return CarStatusMsg(x['name'], x['status'], x['battery'])
+
+	@staticmethod
+	def list_to_json(msg_list):
+		msg_dicts = [msg.dictionary() for msg in msg_list]
+		return json.dumbs(msg_dicts)
