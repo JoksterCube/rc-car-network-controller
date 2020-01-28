@@ -16,6 +16,7 @@ class LobbyServer():
 		self.shutting_down = False
 
 	def start_lobby(self, b=1):
+		self.shutting_down = False
 		threading.Thread(None, LobbyServer.listen_for_connections, args=(self.host, self.port, b, self)).start()
 	
 	def shut_down(self):
@@ -45,7 +46,7 @@ class LobbyServer():
 	def new_lobby_client(conn, addr, parent):
 		with conn:
 			print('Connected by', addr)
-			while True:
+			while not parent.shutting_down:
 				try:
 					data = conn.recv(1024)
 					if not data: break
@@ -54,8 +55,8 @@ class LobbyServer():
 					msg = ic.RCPCMsg.from_json(data.decode('UTF-8'))
 					parent.update_list(addr, msg)
 				except:
-					print('Disconnected by', addr)
 					break
+		print('Disconnected by', addr)
 		parent.remove_list(addr)
 							   
 ls = LobbyServer(host, port)
